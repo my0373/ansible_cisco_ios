@@ -6,11 +6,10 @@
     repo_url: "https://github.com/my0373/ios_backups.git"
     tmp_repo_directory  "/tmpgit"
   tasks:
-
-  - name: Clone GIT Repository
-    ansible.builtin.git:
-      repo: "{{ repo_url }}"
-      dest: "{{ tmp_repo_directory }}"
-      clone: yes
-      update: yes
+    - name: Clone GIT Repository
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ tmp_repo_directory }}"
+        clone: yes
+        update: yes
 
