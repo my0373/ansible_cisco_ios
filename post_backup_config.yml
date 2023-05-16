@@ -1,0 +1,71 @@
+---
+- name: Add users to a Cisco device
+  hosts: all
+  gather_facts: no
+
+  vars:
+    repo_url: "https://{{git_user|urlencode()}}:{{git_pass|urlencode()}}@github.com/my0373/ios_backups.git"
+    tmp_repo_directory:  "/tmpgit"
+
+  tasks:
+    - name: Clone GIT Repository
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ tmp_repo_directory }}"
+        clone: yes
+        update: yes
+
+    ## Th next few lines ignore errors. This is just for testing.
+    - name: Checkout new branch
+      ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: Add new files
+      ansible.builtin.command: git config --global user.name "Matt York"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: Add new files
+      ansible.builtin.command: git config --global user.email my0373@gmail.com
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: "Backup Cisco IOS Device {{ inventory_hostname }}"
+      cisco.ios.ios_config:
+        backup: yes
+      register: backup_output
+
+    - name: "Write backup to disk"
+      ansible.builtin.copy:
+        src:  "{{ backup_output['backup_path'] }}"
+        dest: "{{ tmp_repo_directory }}/{{ inventory_hostname }}-backup.cfg"
+
+    ## Th next few lines ignore errors. This is just for testing.
+    - name: Add new files
+      ansible.builtin.command: git add .
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+
+    - name: Commit
+      ansible.builtin.command: git commit -am "Backup prior to change {{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+
+    - name: Push
+      ansible.builtin.command: git push
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+#
+#    - name: "Copy backup to router"
+#      cisco.ios.ios_config:
+#        src: "/{{ inventory_hostname }}-backup.cfg"
+#
+#    - name: save running to startup
+#      cisco.ios.ios_config:
+#        save_when: modified
+
+
