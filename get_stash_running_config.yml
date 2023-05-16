@@ -32,19 +32,9 @@
         backup: yes
       register: backup_output
 
-    - name: "Load backup into a workflow variable"
-      ansible.builtin.set_stats:
-        aggregate: no
-        data:
-          backup_contents: "{{ lookup('file',  backup_output['backup_path']) }}"
-
-    - name: "Task output"
-      ansible.builtin.debug:
-        var: backup_contents
-
     - name: "Write backup to disk"
       ansible.builtin.copy:
-        content:  "Timmy" 
+        src:  "{{ backup_output['backup_path'] }}"
         dest: "{{ tmp_repo_directory }}/{{ inventory_hostname }}-backup.cfg"
 
     - name: Add new files
