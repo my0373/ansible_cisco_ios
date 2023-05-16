@@ -1,0 +1,8 @@
+---
+  - name: "Backup a Cisco IOS device"
+    hosts: all
+    tasks:
+
+    - name: "Backup output"
+      ansible.builtin.debug:
+        var: backup_contents
