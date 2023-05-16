@@ -15,3 +15,33 @@
         clone: yes
         update: yes
 
+
+    - name: "Write backup to disk"
+      ansible.builtin.copy:
+        content:  "{{ backup_contents }}" 
+        dest: "{{ tmp_repo_directory }}/{{ inventory_hostname }}-backup.cfg"
+
+    - name: Add new files
+      ansible.builtin.command: git add .
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: Commit
+      ansible.builtin.command: git commit -am "test"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: Push
+      ansible.builtin.command: git push
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+#
+#    - name: "Copy backup to router"
+#      cisco.ios.ios_config:
+#        src: "/{{ inventory_hostname }}-backup.cfg"
+#
+#    - name: save running to startup
+#      cisco.ios.ios_config:
+#        save_when: modified
+
+
