@@ -1,6 +1,7 @@
 ---
 - name: Add users to a Cisco device
   hosts: all
+  gather_facts: no
   vars:
     users_config: "ios_config/users.cfg"
   tasks:
