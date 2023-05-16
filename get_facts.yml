@@ -1,0 +1,12 @@
+---
+- name: "Collect facts from a Cisco IOS device"
+  tasks:
+    - name: "Run the collection on host {{ inventory_hostname }}"
+      cisco.ios.ios_facts:
+        gather_subset: all
+      register: ios_rtr_facts
+
+    - name: "Print the discovered facts to the screen"
+      ansible.builtin.debug:
+        var: ios_rtr_facts
+        
