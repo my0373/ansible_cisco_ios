@@ -16,7 +16,7 @@
         update: yes
 
     - name: Configure local git
-      git_config:
+      community.general.git_config:
         name: user.email
         scope: global
         value: 'my0373@gmail.com'
