@@ -15,6 +15,11 @@
         clone: yes
         update: yes
 
+    - name: Configure local git
+      git_config:
+        name: user.email
+        scope: global
+        value: 'my0373@gmail.com'
 
     - name: "Write backup to disk"
       ansible.builtin.copy:
