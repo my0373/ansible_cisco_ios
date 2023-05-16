@@ -26,7 +26,6 @@
       args:
         chdir: "{{ tmp_repo_directory }}"
 
-
     - name: "Backup Cisco IOS Device {{ inventory_hostname }}"
       cisco.ios.ios_config:
         backup: yes
@@ -37,20 +36,24 @@
         src:  "{{ backup_output['backup_path'] }}"
         dest: "{{ tmp_repo_directory }}/{{ inventory_hostname }}-backup.cfg"
 
+    ## Th next few lines ignore errors. This is just for testing.
     - name: Add new files
       ansible.builtin.command: git add .
       args:
         chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
 
     - name: Commit
       ansible.builtin.command: git commit -am "test"
       args:
         chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
 
     - name: Push
       ansible.builtin.command: git push
       args:
         chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
 #
 #    - name: "Copy backup to router"
 #      cisco.ios.ios_config:
