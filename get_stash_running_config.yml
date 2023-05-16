@@ -26,6 +26,22 @@
       args:
         chdir: "{{ tmp_repo_directory }}"
 
+
+    - name: "Backup Cisco IOS Device {{ inventory_hostname }}"
+      cisco.ios.ios_config:
+        backup: yes
+      register: backup_output
+
+    - name: "Load backup into a workflow variable"
+      ansible.builtin.set_stats:
+        aggregate: no
+        data:
+          backup_contents: "{{ lookup('file',  backup_output['backup_path']) }}"
+
+    - name: "Task output"
+      ansible.builtin.debug:
+        var: backup_contents
+
     - name: "Write backup to disk"
       ansible.builtin.copy:
         content:  "Timmy" 
