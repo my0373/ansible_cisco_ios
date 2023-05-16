@@ -1,0 +1,14 @@
+---
+  - name: "Backup a Cisco IOS device"
+    hosts: all
+    vars:
+      backup_filename: "latest"
+    tasks:
+    - name: "Backup Cisco IOS Device {{ inventory_hostname }}"
+      cisco.ios.ios_config:
+        backup: yes
+      register: backup_output
+
+    - name: "Task output"
+      ansible.builtin.debug:
+        var: backup_output
