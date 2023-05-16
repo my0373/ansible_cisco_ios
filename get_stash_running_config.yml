@@ -4,7 +4,7 @@
   gather_facts: no
 
   vars:
-    repo_url: "https://github.com/my0373/ios_backups.git"
+    repo_url: "https://{{git_user|urlencode()}}:{{git_pass|urlencode()}}@github.com/my0373/ios_backups.git"
     tmp_repo_directory:  "/tmpgit"
 
   tasks:
