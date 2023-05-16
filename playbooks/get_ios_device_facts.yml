@@ -1,5 +1,6 @@
 ---
 - name: "Collect facts from a Cisco IOS device"
+  hosts: all
   tasks:
     - name: "Run the collection on host {{ inventory_hostname }}"
       cisco.ios.ios_facts:
