@@ -1,0 +1,19 @@
+---
+  - name: "Backup a Cisco IOS device"
+    hosts: all
+    tasks:
+
+    - name: "Write backup to disk"
+      ansible.builtin.copy:
+        content:  "{{ backup_contents }}" 
+        dest: "./{{ ansible_hostname }}-backup.cfg"
+
+    - name: "Copy backup to router"
+      cisco.ios.ios_config:
+        src: "./{{ ansible_hostname }}-backup.cfg"
+
+    - name: save running to startup
+      cisco.ios.ios_config:
+        save_when: modified
+
+
