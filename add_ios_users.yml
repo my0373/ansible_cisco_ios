@@ -2,7 +2,7 @@
 - name: Add users to a Cisco device
   hosts: all
   vars:
-    users_config: "./ios_config/users.cfg"
+    users_config: "ios_config/users.cfg"
   tasks:
     name: "Push config file to IOS device"
     cisco.ios.ios_config:
