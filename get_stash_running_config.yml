@@ -15,11 +15,16 @@
         clone: yes
         update: yes
 
-    - name: Configure local git
-      community.general.git_config:
-        name: user.email
-        scope: global
-        value: 'my0373@gmail.com'
+
+    - name: Add new files
+      ansible.builtin.command: git config --global user.name "Matt York"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+
+    - name: Add new files
+      ansible.builtin.command: git config --global user.email my0373@gmail.com
+      args:
+        chdir: "{{ tmp_repo_directory }}"
 
     - name: "Write backup to disk"
       ansible.builtin.copy:
