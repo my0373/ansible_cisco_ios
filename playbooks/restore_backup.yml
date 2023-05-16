@@ -6,11 +6,11 @@
     - name: "Write backup to disk"
       ansible.builtin.copy:
         content:  "{{ backup_contents }}" 
-        dest: "./{{ ansible_hostname }}-backup.cfg"
+        dest: "./{{ inventory_hostname }}-backup.cfg"
 
     - name: "Copy backup to router"
       cisco.ios.ios_config:
-        src: "./{{ ansible_hostname }}-backup.cfg"
+        src: "./{{ inventory_hostname }}-backup.cfg"
 
     - name: save running to startup
       cisco.ios.ios_config:
