@@ -54,6 +54,13 @@
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
+    - name: Set upstream branch
+      ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+
+
     - name: Push
       ansible.builtin.command: git push
       args:
