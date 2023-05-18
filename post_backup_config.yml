@@ -48,16 +48,18 @@
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
-    ## Th next few lines ignore errors. This is just for testing.
-    - name: Check for latest repo
-      ansible.builtin.command: "git pull origin {{ chg_request_number }}"
-      args:
+
+
+    - name: Commit
+      ansible.builtin.command: git commit -am "Backup post to change {{ chg_request_number }}"
       args:
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
-    - name: Commit
-      ansible.builtin.command: git commit -am "Backup post to change {{ chg_request_number }}"
+    ## Th next few lines ignore errors. This is just for testing.
+    - name: Check for latest repo
+      ansible.builtin.command: "git pull origin {{ chg_request_number }}"
+      args:
       args:
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
