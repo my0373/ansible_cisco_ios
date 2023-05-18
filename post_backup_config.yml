@@ -50,7 +50,7 @@
 
 
     - name: Commit
-      ansible.builtin.command: git commit --force -am "Backup post to change {{ chg_request_number }}"
+      ansible.builtin.command: git commit -f -am "Backup post to change {{ chg_request_number }}"
       args:
         chdir: "{{ tmp_repo_directory }}"
       #ignore_errors: yes
