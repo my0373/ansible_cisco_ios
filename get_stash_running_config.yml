@@ -15,13 +15,18 @@
         clone: yes
         update: yes
 
+    - name: Checkout new branch
+      ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
 
-    - name: Add new files
+
+    - name: Set user name
       ansible.builtin.command: git config --global user.name "Matt York"
       args:
         chdir: "{{ tmp_repo_directory }}"
 
-    - name: Add new files
+    - name: Set email
       ansible.builtin.command: git config --global user.email my0373@gmail.com
       args:
         chdir: "{{ tmp_repo_directory }}"
@@ -45,6 +50,12 @@
 
     - name: Commit
       ansible.builtin.command: git commit -am "Backup prior to change {{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+
+    - name: Set upstream branch
+      ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
       args:
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
