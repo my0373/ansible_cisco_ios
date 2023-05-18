@@ -16,10 +16,10 @@
         update: yes
 
     ## Th next few lines ignore errors. This is just for testing.
-    - name: Checkout new branch
-      ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
-      args:
-        chdir: "{{ tmp_repo_directory }}"
+    # - name: Checkout new branch
+    #   ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
+    #   args:
+    #     chdir: "{{ tmp_repo_directory }}"
 
     - name: Set user name
       ansible.builtin.command: git config --global user.name "Matt York"
@@ -56,11 +56,11 @@
       #ignore_errors: yes
 
 
-    - name: Set upstream branch
-      ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
-      args:
-        chdir: "{{ tmp_repo_directory }}"
-      ignore_errors: yes
+    # - name: Set upstream branch
+    #   ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
+    #   args:
+    #     chdir: "{{ tmp_repo_directory }}"
+    #   ignore_errors: yes
 
     # ## Th next few lines ignore errors. This is just for testing.
     # - name: Check for latest repo
