@@ -48,6 +48,18 @@
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
+    ## Th next few lines ignore errors. This is just for testing.
+    - name: Add new files
+      ansible.builtin.command: git status 
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      register: timmy
+
+    - name: Add new files
+      ansible.builtin.debug:
+        var: timmy 
+      
+
 
     - name: Commit
       ansible.builtin.command: git commit -am "Backup post to change {{ chg_request_number }}"
