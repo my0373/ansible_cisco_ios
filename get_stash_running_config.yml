@@ -15,10 +15,10 @@
         clone: yes
         update: yes
 
-    - name: Checkout new branch
-      ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
-      args:
-        chdir: "{{ tmp_repo_directory }}"
+    # - name: Checkout new branch
+    #   ansible.builtin.command: git checkout -b "{{ chg_request_number }}"
+    #   args:
+    #     chdir: "{{ tmp_repo_directory }}"
 
 
     - name: Set user name
