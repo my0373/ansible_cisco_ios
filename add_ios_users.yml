@@ -6,26 +6,26 @@
     users_config: "ios_config/users.cfg"
   tasks:
 
-  - name: Add a user account
-    cisco.ios.ios_user:
-      name: "myork"
-      state: present
+  # - name: Add a user account
+  #   cisco.ios.ios_user:
+  #     name: "myork"
+  #     state: present
 
-  - name: Add a user account
-    cisco.ios.ios_user:
-      name: "myork01"
-      state: present
+  # - name: Add a user account
+  #   cisco.ios.ios_user:
+  #     name: "myork01"
+  #     state: present
 
-  - name: Add a user account
-    cisco.ios.ios_user:
-      name: "myork02"
-      state: present
+  # - name: Add a user account
+  #   cisco.ios.ios_user:
+  #     name: "myork02"
+  #     state: present
 
-  # - name: "Push config file to IOS device"
-  #   cisco.ios.ios_config:
-  #     src: "{{ users_config }}"
+   - name: "Push config file to IOS device"
+     cisco.ios.ios_config:
+       src: "{{ users_config }}"
 
 
-  # - name: save running to startup when modified
-  #   ios_config:
-  #     save_when: modified
+   - name: save running to startup when modified
+     ios_config:
+       save_when: modified
