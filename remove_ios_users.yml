@@ -1,0 +1,23 @@
+---
+- name: Delete myork IOS users from a Cisco device
+  hosts: all
+  gather_facts: no
+  vars:
+    users_config: "ios_config/users.cfg"
+  tasks:
+
+  - name: Delete a user account
+    cisco.ios.ios_user:
+      name: "myork"
+      state: absent
+
+  - name: Delete a user account
+    cisco.ios.ios_user:
+      name: "myork01"
+      state: absent
+
+  - name: Delete a user account
+    cisco.ios.ios_user:
+      name: "myork02"
+      state: absent
+
