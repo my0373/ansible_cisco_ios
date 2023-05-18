@@ -21,12 +21,12 @@
       args:
         chdir: "{{ tmp_repo_directory }}"
 
-    - name: Add new files
+    - name: Set user name
       ansible.builtin.command: git config --global user.name "Matt York"
       args:
         chdir: "{{ tmp_repo_directory }}"
 
-    - name: Add new files
+    - name: Set user email
       ansible.builtin.command: git config --global user.email my0373@gmail.com
       args:
         chdir: "{{ tmp_repo_directory }}"
@@ -47,7 +47,6 @@
       args:
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
-
 
 
     - name: Commit
