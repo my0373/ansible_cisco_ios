@@ -6,17 +6,17 @@
     users_config: "ios_config/users.cfg"
   tasks:
 
-  - name: Delete a user account
+  - name: Add a user account
     cisco.ios.ios_user:
       name: "myork"
       state: present
 
-  - name: Delete a user account
+  - name: Add a user account
     cisco.ios.ios_user:
       name: "myork01"
       state: present
 
-  - name: Delete a user account
+  - name: Add a user account
     cisco.ios.ios_user:
       name: "myork02"
       state: present
