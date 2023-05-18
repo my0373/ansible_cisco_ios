@@ -50,7 +50,8 @@
 
     ## Th next few lines ignore errors. This is just for testing.
     - name: Check for latest repo
-      ansible.builtin.command: git pull 
+      ansible.builtin.command: "git pull origin {{ chg_request_number }}"
+      args:
       args:
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
