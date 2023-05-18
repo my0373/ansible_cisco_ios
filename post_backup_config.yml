@@ -53,7 +53,7 @@
       ansible.builtin.command: git commit -am "Backup post to change {{ chg_request_number }}"
       args:
         chdir: "{{ tmp_repo_directory }}"
-      ignore_errors: yes
+      #ignore_errors: yes
 
 
     - name: Set upstream branch
