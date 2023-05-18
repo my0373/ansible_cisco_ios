@@ -1,0 +1,6 @@
+- name: Pause for 60 seconds
+  hosts: all
+  tasks:
+  - ansible.builtin.pause:
+      minutes: 1
+
