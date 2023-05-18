@@ -62,6 +62,12 @@
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
+    - name: Set upstream branch
+      ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
+      args:
+        chdir: "{{ tmp_repo_directory }}"
+      ignore_errors: yes
+
     - name: Commit
       ansible.builtin.command: git merge
       args:
@@ -75,11 +81,7 @@
         chdir: "{{ tmp_repo_directory }}"
       ignore_errors: yes
 
-    - name: Set upstream branch
-      ansible.builtin.command: "git push --set-upstream origin {{ chg_request_number }}"
-      args:
-        chdir: "{{ tmp_repo_directory }}"
-      ignore_errors: yes
+
 
 
     - name: Push
