@@ -1,5 +1,5 @@
 ---
-  - name: "Backup a Cisco IOS device"
+  - name: "Display the Cisco IOS backup"
     hosts: all
     tasks:
 
