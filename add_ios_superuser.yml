@@ -1,0 +1,25 @@
+---
+- name: Add a backu IOS user while the demo team fix a bug
+  hosts: all
+  gather_facts: no
+  vars:
+    backup_user: "backup"
+    backup_password: "Redhat123"
+  tasks:
+  - name: "Add backup user"
+    cisco.ios.ios_user:
+      name: "{{ backup_user }}"
+      state: present
+
+  - name: Change Password for User "{{ backup_user }}"
+    cisco.ios.ios_user:
+      name: "{{ backup_user  }}"
+      configured_password: "{{ backup_password }}"
+      update_password: always
+      state: present
+
+  - name: save running to startup when modified
+    ios_config:
+      save_when: modified
+
+
