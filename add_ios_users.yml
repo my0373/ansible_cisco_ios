@@ -9,17 +9,17 @@
    - name: Add a user account
      cisco.ios.ios_user:
        name: "myork"
-       state: present
+       state: absent
 
    - name: Add a user account
      cisco.ios.ios_user:
        name: "myork01"
-       state: present
+       state: absent
 
    - name: Add a user account
      cisco.ios.ios_user:
        name: "myork02"
-       state: present
+       state: absent
 
    - name: "Push config file to IOS device"
      cisco.ios.ios_config:
